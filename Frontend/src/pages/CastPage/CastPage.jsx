@@ -1,4 +1,4 @@
-import { alloys } from "../../assets/assset";
+import { alloys } from "../../assets/asset";
 import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 

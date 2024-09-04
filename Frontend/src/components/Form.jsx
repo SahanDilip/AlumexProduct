@@ -33,72 +33,78 @@ export default function Form() {
   };
 
   return (
-    <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto my-auto items-center justify-center">
-      <form onSubmit={handleSubmit}>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Date}
-          onChange={handleChange}
-          className="m-1"
-        >
-          <Label>Date</Label>
-          <StyledInput type="date" placeholder="Select a date" name="Date" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Milt}
-          onChange={handleChange}
-          className="m-1"
-        >
-          <Label>Milt</Label>
-          <StyledInput placeholder="Enter the milt value" name="Milt" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Size}
-          onChange={handleChange}
-          className="m-1"
-        >
-          <Label>Size</Label>
-          <select name="Size" onChange={handleChange} className="border-2 m-1
-          ">
-            <option value="">Select an option</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-          </select>
+    <div className="flex justify-center items-center">
+      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center ">
+        <form onSubmit={handleSubmit}>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Date}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Date</Label>
+            <StyledInput type="date" placeholder="Select a date" name="Date" />
+            <HelperText />
+          </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Milt}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Milt</Label>
+            <StyledInput placeholder="Enter the milt value" name="Milt" />
+            <HelperText />
+          </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Size}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Size</Label>
+            <select
+              name="Size"
+              onChange={handleChange}
+              className="border-2 m-1
+          "
+            >
+              <option value="">Select an option</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
 
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.BTA}
-          onChange={handleChange}
-          className="m-1"
-        >
-          <Label>BTA</Label>
-          <StyledInput placeholder="Enter the BTA value" name="BTA" />
-          <HelperText />
-        </FormControl>
-        <Button
-          onClick={handleSubmit}
-          className="flex btn justify-center mx-auto"
-          style={{
-            backgroundColor: "#1f883d",
-            padding: "8px",
-            marginTop: "10px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        >
-          Submit
-        </Button>
-      </form>
+            <HelperText />
+          </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.BTA}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>BTA</Label>
+            <StyledInput placeholder="Enter the BTA value" name="BTA" />
+            <HelperText />
+          </FormControl>
+          <Button
+            onClick={handleSubmit}
+            className="flex btn justify-center mx-auto"
+            style={{
+              backgroundColor: "#1f883d",
+              padding: "8px",
+              marginTop: "10px",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
