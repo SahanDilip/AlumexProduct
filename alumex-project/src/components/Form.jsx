@@ -9,9 +9,10 @@ import { Button } from "@mui/base/Button";
 
 export default function Form() {
   const [formData, setFormData] = useState({
-    Name: "",
     Date: "",
-    Value: "",
+    Milt: "",
+    Size: "",
+    BTA: "",
   });
 
   const handleChange = (event) => {
@@ -31,55 +32,70 @@ export default function Form() {
       });
   };
 
-  return (
+return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Date}
-          onChange={handleChange}
-        >
-          <Label>Name</Label>
-          <StyledInput placeholder="Write your name here" name="Date" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Value}
-          onChange={handleChange}
-        >
-          <Label>Email</Label>
-          <StyledInput placeholder="Write your email here" name="Value" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Number}
-          onChange={handleChange}
-        >
-          <Label>Message</Label>
-          <StyledInput placeholder="Write your message here" name="Number" />
-          <HelperText />
-        </FormControl>
-        <Button
-          onClick={handleSubmit}
-          className="btn"
-          style={{
-            backgroundColor: "#1f883d",
-            padding: "8px",
-            marginTop: "10px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        >
-          Submit
-        </Button>
-      </form>
+        <form onSubmit={handleSubmit}>
+            <FormControl
+                defaultValue=""
+                required
+                value={formData.Date}
+                onChange={handleChange}
+            >
+                <Label>Date</Label>
+                <StyledInput type="date" placeholder="Select a date" name="Date" />
+                <HelperText />
+            </FormControl>
+            <FormControl
+                defaultValue=""
+                required
+                value={formData.Milt}
+                onChange={handleChange}
+            >
+                <Label>Milt</Label>
+                <StyledInput placeholder="Enter the milt value" name="Milt" />
+                <HelperText />
+            </FormControl>
+            <FormControl
+                defaultValue=""
+                required
+                value={formData.Size}
+                onChange={handleChange}
+            >
+                <Label>Size</Label>
+                <select name="Size" onChange={handleChange}>
+                    <option value="">Select an option</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+                
+                <HelperText />
+            </FormControl>
+            <FormControl
+                defaultValue=""
+                required
+                value={formData.BTA}
+                onChange={handleChange}
+            >
+                <Label>BTA</Label>
+                <StyledInput placeholder="Enter the BTA value" name="BTA" />
+                <HelperText />
+            </FormControl>
+            <Button
+                onClick={handleSubmit}
+                className="btn"
+                style={{
+                    backgroundColor: "#1f883d",
+                    padding: "8px",
+                    marginTop: "10px",
+                    color: "white",
+                    cursor: "pointer",
+                }}
+            >
+                Submit
+            </Button>
+        </form>
     </div>
-  );
+);
 }
 
 const StyledInput = styled(Input)(
