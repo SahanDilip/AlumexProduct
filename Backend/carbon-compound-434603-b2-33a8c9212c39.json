@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "carbon-compound-434603-b2",
+  "private_key_id": "33a8c9212c395fdd5b2e9d9fb4359ec934244e72",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDJGcDBsXWxCmRj\nMp4XkGew77yAyTL6SUzqR+UqPX00PDtGGyOvTrEPrSuZ1takoimAMQiH3m+84gvi\nrEJZM8ExuTiT7GQNfVzKw6DtWz1kySqx812J3KX0t/oICdp7BsTupc8Im+I6Sn/s\nyF35yx0f4j+FLcauImSydt1BVRKv7JYlNPk1r6gfuzcF2956op6hbPEhukuzOO80\nygeLwJGhEbvLsEQn1rTGcIdYUeLuf8ZfNGQtP2DlzNats0krpYfxPFduxfHZIHuM\ntjvaiSZXXkTr/lcQLQ0S5bllp/+CWHD5FvSYJl5TaavXfP8l6Oc2gaBMwCvMEmfp\nC4LDLXMXAgMBAAECggEABqeGVfQ+YyBnS6jMvWtuIhAb4zn279GbOwIPsUhL7u9k\nZ9X41+4K9KUelRA4zprTUJ85aabieKlqbkR39rB1O0iYI0ubtCyRu6bMi5qT6Y1b\nq5iNQ2/cicBzoPzMtF4/QMVA0WPxWBMAsI5Lq5BO/D4pgLRIyybgwSQm/yF/eoah\nFyBQf27YTGFknBr10acHzFSp8u+5YAjtJEAy24pDZQApqM0yyUfbgkg07lwP1mJq\n3jIFMCaFq/yvD17xjGt5KPbfwQQU0MYQ9laSLwkKtSpcDO8DFFDIrDujy8/XiuhT\n2rgCC2MAehNXa6qCw7aNqYBmKEdZvVmdgg47r5j+rQKBgQDwMWUsl+YJPTZI/VKf\nCjvG7x91GYLshSFNIy1MP21TB9eOAZmAP1PKKOdTPXPK6TZmBA9DKtKjOZ5n8yVS\nNEOOSglrwPLfZ2X/ID6/43F3D0X76OryoHUOXC7/orlxByaMw8qNzhxEUwsQedaR\n6KUfEGjRz0odaCymniui0Jzu2wKBgQDWVcG+Vg19lPPKg6UwLYudHyxuTOtfBl3M\nXIusjaaCQTc913H0Fl6A/EHOJ/wdH2rR2jKMNaiyis3RYKXEdur0LYUxpFWjypzh\ncCYFpHVmL3yviOiQzay+EUCdgf7qtMqWmW6z5LuEdwd2Nm76h4Mdu86lrvzlxWwT\n2MkYiDirdQKBgQDLVYWI0q5yc9dYwtsGt+sS5auDvi0PfURLwNPAEJHEEIdyN/hy\nkSmloiryVLuJsxPSGO2ytrXKaCSpazTU+lmWQybmiVkRtr6p0+pLF4geeleMggkj\njKKLnY5L6r2B6cPAtp7qnOlhDcv4DqyOqJvgSEv0Eb90VZQ3GP9nvaKcsQKBgQC/\nkPBUPTdbidkHpPfsgpipOyaMAyXPzbHiKMkR1Z0ACGfmVvxbi+61XEE4kBZOtTjV\nDS9mj8MSqOrh+37NhPfkfBby0o1Uko/7EjB5lI71YPYRMc2jNqDxVBwrave7MRFs\n3v/Ju2M6NuStbGNuedXfqm89OJSCjRxW9Mhvq7jyzQKBgHr7WWaIw9B3uVfpz9tR\n8BzIEYbdzRSnNyHu4uaGEQQ3uXQZuvT85Oro/GTephbsxruyQRK9gl/ynxpKkAeE\nR4k9KfEUpJhUBrMFJTdkueuuUSHPT6/qUIsuO2W4ELzqm4/33InkVX4/+P1ko5Ee\nxYA1g5lft8ru5Zu6Hp396mDW\n-----END PRIVATE KEY-----\n",
+  "client_email": "alumex@carbon-compound-434603-b2.iam.gserviceaccount.com",
+  "client_id": "110664810817519321489",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/alumex%40carbon-compound-434603-b2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
