@@ -33,8 +33,8 @@ export default function Form() {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center ">
+    <div className="flex justify-center items-center mt-10">
+      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center bg-gray-300">
         <form onSubmit={handleSubmit}>
           <FormControl
             defaultValue=""
@@ -92,7 +92,7 @@ export default function Form() {
           </FormControl>
           <Button
             onClick={handleSubmit}
-            className="flex btn justify-center mx-auto"
+            className="flex btn justify-center mx-auto rounded-xl mt-5"
             style={{
               backgroundColor: "#1f883d",
               padding: "8px",
