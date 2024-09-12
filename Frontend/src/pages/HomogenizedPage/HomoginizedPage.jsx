@@ -1,53 +1,34 @@
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
-import { Bar } from "react-chartjs-2"; // Import Bar from react-chartjs-2
-import { alloys } from "../../assets/assset";
-import { Chart as ChartJS } from "chart.js/auto";
+import { alloys, graphs } from "../../assets/asset";
+import { useNavigate } from "react-router-dom";
 
 export default function HomoginizedPage() {
   const [selectedType, setSelectedType] = useState(null);
-  const [chartData, setChartData] = useState(null); // State to store chart data
-  const [data,setData]=useState()
+  const [selectedGraph, setSelectedGraph] = useState(null);
+  const navigate = useNavigate();
 
-  const getData = async () => {
-    try {
-      const res = await fetch('https://sheet.best/api/sheets/6bb07780-a849-44ef-9ece-5244cf54b9bb');
-      const incomingdata = await res.json();
-      setData(incomingdata);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
+  // Convert the graphs object into an array of options
+  const graphOptions = Object.keys(graphs).map((key) => ({
+    label: key,
+    value: graphs[key],
+  }));
 
-  useEffect(()=> {
-    getData();
-  },[])
-
-  
-
-  const getBarGraph = () => {
-    const data = {
-      labels: ["A", "B", "C"],
-      datasets: [
-        {
-          label: "Revenue",
-          data: [200, 300, 400],
-        },
-        {
-          label: "Loss",
-          data: [20, 30, 40],
-        },
-      ],
-    };
-
-    setChartData(data); // Set the chart data to be rendered
+  const getBtaGraph = () => {
+    console.log(selectedType);
+    console.log(selectedGraph);
+    // Perform further actions, e.g., navigate to a different page
+    // setChartData(dataforbta);
+    navigate(
+      `/graph?type=${encodeURIComponent(
+        selectedType
+      )}&graph=${encodeURIComponent(selectedGraph)}`
+    );
   };
 
   return (
     <div>
-      <div className="card flex justify-content-center">
+      <div className="container">
         <Dropdown
           value={selectedType}
           onChange={(e) => setSelectedType(e.value)}
@@ -55,21 +36,21 @@ export default function HomoginizedPage() {
           optionLabel="name"
           editable
           placeholder="Select a Type"
-          className="drop down val"
+          className="dropdown val"
         />
       </div>
-      <button onClick={getBarGraph}>BTA</button>
-      {/* <button onClick={getGraph}>Green Size</button>
-       <button onClick={getGraph}>Inverse Segregation</button> */}
-
-      {chartData && (
-        <Bar
-          data={chartData}
-          options={{ responsive: true }}
+      <div className="container">
+        <Dropdown
+          value={selectedGraph}
+          onChange={(e) => setSelectedGraph(e.value)}
+          options={graphOptions}
+          optionLabel="label" // This is the name of the option (e.g., "BTA", "GRAIN_SIZE")
+          editable
+          placeholder="Select a Graph"
+          className="dropdown val"
         />
-      )}
-      <div className="dataCard revenue">
       </div>
+      <button onClick={getBtaGraph}>Show Graph</button>
     </div>
   );
 }

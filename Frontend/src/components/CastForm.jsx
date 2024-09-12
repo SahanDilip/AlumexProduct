@@ -7,12 +7,13 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/base/Button";
 
-export default function Form() {
+export default function Cast_Form() {
   const [formData, setFormData] = useState({
     Date: "",
-    Milt: "",
+    Melt_No: "",
     Size: "",
-    BTA: "",
+    Grade: "",
+    Dendrite_Arm_Spacing: "",
   });
 
   const handleChange = (event) => {
@@ -26,74 +27,108 @@ export default function Form() {
     event.preventDefault();
     console.log(formData);
     axios
-      .post("http://localhost:5001/sheet", { data: formData })
-      .then((response) => {
-        console.log(response);
+      .post("http://localhost:5001/sheet", { data: formData, sheet: "Cast" })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Data added successfully");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Date}
-          onChange={handleChange}
-        >
-          <Label>Date</Label>
-          <StyledInput type="date" placeholder="Select a date" name="Date" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Milt}
-          onChange={handleChange}
-        >
-          <Label>Milt</Label>
-          <StyledInput placeholder="Enter the milt value" name="Milt" />
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.Size}
-          onChange={handleChange}
-        >
-          <Label>Size</Label>
-          <select name="Size" onChange={handleChange}>
-            <option value="">Select an option</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-          </select>
+    <div className="flex justify-center items-center mt-10">
+      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center bg-gray-300">
+        <form onSubmit={handleSubmit}>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Date}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Date</Label>
+            <StyledInput type="date" placeholder="Select a date" name="Date" />
+            <HelperText />
+          </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Melt_No}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Melt No</Label>
+            <StyledInput placeholder="Enter the milt value" name="Melt_No" />
+            <HelperText />
+          </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Size}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Size</Label>
+            <select
+              name="Size"
+              onChange={handleChange}
+              className="border-2 m-1
+          "
+            >
+              <option value="">Select an option</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
 
-          <HelperText />
-        </FormControl>
-        <FormControl
-          defaultValue=""
-          required
-          value={formData.BTA}
-          onChange={handleChange}
-        >
-          <Label>BTA</Label>
-          <StyledInput placeholder="Enter the BTA value" name="BTA" />
-          <HelperText />
-        </FormControl>
-        <Button
-          onClick={handleSubmit}
-          className="btn"
-          style={{
-            backgroundColor: "#1f883d",
-            padding: "8px",
-            marginTop: "10px",
-            color: "white",
-            cursor: "pointer",
-          }}
-        >
-          Submit
-        </Button>
-      </form>
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Grade}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Grade</Label>
+            <StyledInput placeholder="Enter the Grade value" name="Grade" />
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Dendrite_Arm_Spacing}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Dendrite Arm Spacing</Label>
+            <StyledInput
+              placeholder="Enter the Dendrite Arm Spacing value"
+              name="Dendrite_Arm_Spacing"
+            />
+            <HelperText />
+          </FormControl>
+
+          <Button
+            onClick={handleSubmit}
+            className="flex btn justify-center mx-auto rounded-xl mt-5"
+            style={{
+              backgroundColor: "#1f883d",
+              padding: "8px",
+              marginTop: "10px",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }
