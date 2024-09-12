@@ -13,7 +13,7 @@ const serviceAccountAuth = new JWT({
 });
 
 const doc = new GoogleSpreadsheet(
-  "1Y9GFRnXY8bj1fqnNDahDFeMiQySBPP0kz92Qe9zaDuQ",
+  "120t21BYaJgYw9TV0tTPxJJDjvsuetiblTyEP8orJDro",
   serviceAccountAuth
 );
 
