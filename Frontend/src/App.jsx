@@ -7,6 +7,7 @@ import HomoginizedPage from "./pages/HomogenizedPage/HomoginizedPage";
 import Hormoginize_Form from "./components/HormoginizeForm";
 import Cast_Form from "./components/CastForm";
 import Graph from "./pages/GraphPage/Graph";
+import Register from "./pages/RegisterPage/Register";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/hormoginize-add" element={<Hormoginize_Form />} />
         <Route path="/cast-add" element={<Cast_Form />} />
         <Route path="/graph" element={<Graph />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );
