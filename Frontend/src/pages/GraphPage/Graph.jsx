@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -10,33 +10,63 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import axios from 'axios';
 
 // Register the required components with Chart.js
 ChartJS.register(
-  CategoryScale, // Category scale for x-axis
-  LinearScale, // Linear scale for y-axis
-  PointElement, // Points on the line chart
-  LineElement, // Line element for the line chart
-  Title, // Title component
-  Tooltip, // Tooltip component
-  Legend // Legend component
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
 );
 
 import { useLocation } from "react-router-dom";
-import { dataforbta } from "../../assets/asset";
 
 export default function Graph() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const selectedType = params.get("type");
-  const selectedGraph = params.get("graph");
-  console.log(selectedGraph);
-  console.log(selectedType);
+  const selectedSize = params.get("size");
+
+  const [chartData, setChartData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/sheet", {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          params: {
+            selectedType: selectedType,
+            selectedSize: selectedSize,
+          },
+        });
+
+        if (response.status === 200) {
+          console.log("Get Data Successfully");
+          console.log(response);
+          // setChartData(response.data); // Update with actual data
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [selectedType, selectedSize]);
 
   return (
     <div>
       Graph
-      {dataforbta && <Line data={dataforbta} options={{ responsive: true }} />}
+      {chartData ? (
+        <Line data={chartData} options={{ responsive: true }} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
