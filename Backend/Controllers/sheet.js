@@ -19,24 +19,42 @@ const doc = new GoogleSpreadsheet(
 
 export const getData = async (req, res, next) => {
   try {
-    const { date } = req.query;
+    const { size, date, grade, sheet } = req.query;
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByIndex[0];
+    const spreadsheet = doc.sheetsByTitle[sheet];
+    const rows = await spreadsheet.getRows();
 
-    const rows = await sheet.getRows();
-    const filteredRow = rows.find((row) => row._rawData[0] === date);
-    const data = filteredRow ? filteredRow._rawData : null;
-    res.json(data);
+    const filteredRows = rows.filter(
+      (row) =>
+        row._rawData[0] === date &&
+        row._rawData[2] === size &&
+        row._rawData[1] === grade
+    );
+
+    if (filteredRows.length > 0) {
+      const headers = spreadsheet.headerValues;
+
+      const data = filteredRows.map((filteredRow) =>
+        headers.reduce((acc, header, index) => {
+          acc[header] = filteredRow._rawData[index];
+          return acc;
+        }, {})
+      );
+
+      res.json(data);
+    } else {
+      res.json([]);
+    }
   } catch (error) {
-    next(error);
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching data." });
   }
 };
 
 export const addData = async (req, res, next) => {
   try {
-    const { data } = req.body;
-    const { sheet } = req.body;
+    const { data, sheet } = req.body;
     await doc.loadInfo();
 
     const spreadsheet = doc.sheetsByTitle[sheet];
