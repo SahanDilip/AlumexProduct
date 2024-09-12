@@ -13,6 +13,9 @@ export default function Form() {
     Milt: "",
     Size: "",
     BTA: "",
+    Grade: "",
+    Grain_Size: "",
+    Inverse_Segregasion_Zone: "",
   });
 
   const handleChange = (event) => {
@@ -50,12 +53,12 @@ export default function Form() {
           <FormControl
             defaultValue=""
             required
-            value={formData.Milt}
+            value={formData.Melt_No}
             onChange={handleChange}
             className="m-1"
           >
-            <Label>Milt</Label>
-            <StyledInput placeholder="Enter the milt value" name="Milt" />
+            <Label>Melt No</Label>
+            <StyledInput placeholder="Enter the milt value" name="Melt_No" />
             <HelperText />
           </FormControl>
           <FormControl
@@ -90,6 +93,48 @@ export default function Form() {
             <StyledInput placeholder="Enter the BTA value" name="BTA" />
             <HelperText />
           </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Grade}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Grade</Label>
+            <StyledInput placeholder="Enter the Grade value" name="Grade" />
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Grain_Size}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Grain_Size</Label>
+            <StyledInput
+              placeholder="Enter the Grain_Size value"
+              name="Grain_Size"
+            />
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Inverse_Segregasion_Zone}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Inverse_Segregasion_Zone</Label>
+            <StyledInput
+              placeholder="Enter the Inverse_Segregasion_Zone value"
+              name="Inverse_Segregasion_Zone"
+            />
+            <HelperText />
+          </FormControl>
+
           <Button
             onClick={handleSubmit}
             className="flex btn justify-center mx-auto rounded-xl mt-5"
