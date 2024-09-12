@@ -36,12 +36,13 @@ export const getData = async (req, res, next) => {
 export const addData = async (req, res, next) => {
   try {
     const { data } = req.body;
+    const { sheet } = req.body;
     await doc.loadInfo();
 
-    const sheet = doc.sheetsByIndex[0];
-    await sheet.addRow(data);
+    const spreadsheet = doc.sheetsByTitle[sheet];
+    await spreadsheet.addRow(data);
 
-    res.json({ message: "Data added successfully" });
+    res.status(200).json({ message: "Data added successfully" });
   } catch (error) {
     next(error);
   }

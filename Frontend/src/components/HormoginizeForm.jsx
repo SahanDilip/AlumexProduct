@@ -7,10 +7,10 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/base/Button";
 
-export default function Form() {
+export default function Hormoginize_Form() {
   const [formData, setFormData] = useState({
     Date: "",
-    Milt: "",
+    Melt_No: "",
     Size: "",
     BTA: "",
     Grade: "",
@@ -29,9 +29,15 @@ export default function Form() {
     event.preventDefault();
     console.log(formData);
     axios
-      .post("http://localhost:5001/sheet", { data: formData })
-      .then((response) => {
-        console.log(response);
+      .post("http://localhost:5001/sheet", { data: formData,sheet: "Homogenize" })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Data added successfully");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -112,9 +118,9 @@ export default function Form() {
             onChange={handleChange}
             className="m-1"
           >
-            <Label>Grain_Size</Label>
+            <Label>Grain Size</Label>
             <StyledInput
-              placeholder="Enter the Grain_Size value"
+              placeholder="Enter the Grain Size value"
               name="Grain_Size"
             />
             <HelperText />
@@ -127,9 +133,9 @@ export default function Form() {
             onChange={handleChange}
             className="m-1"
           >
-            <Label>Inverse_Segregasion_Zone</Label>
+            <Label>Inverse Segregasion Zone</Label>
             <StyledInput
-              placeholder="Enter the Inverse_Segregasion_Zone value"
+              placeholder="Enter the Inverse Segregasion Zone value"
               name="Inverse_Segregasion_Zone"
             />
             <HelperText />
