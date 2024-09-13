@@ -1,11 +1,31 @@
+.admin-dash-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.admin-dash-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire container */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+}
+
+.button-container {
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px; /* Space between buttons */
+}
+
 .extra-large-button {
-    width: 250px; /* Custom width for extra large button */
-    height: 60px; /* Taller button */
-    font-size: 20px; /* Larger font */
-    padding: 10px 20px; /* Custom padding */
-  }
-  
-  .extra-large-button:hover {
-    background-color: darkgreen;
-    border-color: darkgreen;
-  }
+  font-size: 1.5rem; /* Adjust font size for the buttons */
+}

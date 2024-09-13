@@ -124,46 +124,53 @@ export default function Graph() {
     }
   };
 
-  // Triggering the fetch call (inside useEffect, button click, etc.)
   useEffect(() => {
     fetchData();
   }, [selectedSize, selectedDate, selectedType, sheetName]);
 
   return (
-    <div>
+    <div className="flex flex-wrap">
       {sheetName === "Homogenize" && (
         <>
-          <h2>BTA Graph</h2>
-          {chartDataBta ? (
-            <Line data={chartDataBta} options={{ responsive: true }} />
-          ) : (
-            <p>Loading BTA Data...</p>
-          )}
+          <div className="w-2/4 h-2/4">
+            <h2>BTA Graph</h2>
+            {chartDataBta ? (
+              <Line data={chartDataBta} options={{ responsive: true }} />
+            ) : (
+              <p>Loading BTA Data...</p>
+            )}
+          </div>
 
-          <h2>Grain Size Graph</h2>
-          {chartDataGrainSize ? (
-            <Line data={chartDataGrainSize} options={{ responsive: true }} />
-          ) : (
-            <p>Loading Grain Size Data...</p>
-          )}
+          <div className="w-2/4 h-2/4">
+            <h2>Grain Size Graph</h2>
+            {chartDataGrainSize ? (
+              <Line data={chartDataGrainSize} options={{ responsive: true }} />
+            ) : (
+              <p>Loading Grain Size Data...</p>
+            )}
+          </div>
 
-          <h2>Inverse Segregation Zone Graph</h2>
-          {chartDataIzone ? (
-            <Line data={chartDataIzone} options={{ responsive: true }} />
-          ) : (
-            <p>Loading Inverse Segregation Zone Data...</p>
-          )}
+          <div className="w-2/4 h-2/4">
+            <h2>Inverse Segregation Zone Graph</h2>
+            {chartDataIzone ? (
+              <Line data={chartDataIzone} options={{ responsive: true }} />
+            ) : (
+              <p>Loading Inverse Segregation Zone Data...</p>
+            )}
+          </div>
         </>
       )}
 
       {sheetName === "Cast" && (
         <>
-          <h2>Dendrite Arm Spacing Graph</h2>
-          {chartDataDendrite ? (
-            <Line data={chartDataDendrite} options={{ responsive: true }} />
-          ) : (
-            <p>Loading Dendrite Arm Spacing Data...</p>
-          )}
+          <div className="w-2/4 h-2/4">
+            <h2>Dendrite Arm Spacing Graph</h2>
+            {chartDataDendrite ? (
+              <Line data={chartDataDendrite} options={{ responsive: true }} />
+            ) : (
+              <p>Loading Dendrite Arm Spacing Data...</p>
+            )}
+          </div>
         </>
       )}
     </div>
