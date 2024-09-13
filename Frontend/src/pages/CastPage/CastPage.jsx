@@ -2,25 +2,34 @@ import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { alloys, graphs } from "../../assets/asset";
 import { useNavigate } from "react-router-dom";
+import { DatePicker, Space } from 'antd';
+
 
 export default function CastPage() {
   const [selectedType, setSelectedType] = useState(null);
   const [selectedSize, setselectedSize] = useState(null);
+  const [date, setdate] = useState(new Date());
+  const sheetName = "Cast";
   const navigate = useNavigate();
 
   // Convert the graphs object into an array of options
-  const graphOptions = Object.keys(graphs).map((key) => ({
-    label: key,
-    value: graphs[key],
-  }));
+  // const graphOptions = Object.keys(graphs).map((key) => ({
+  //   label: key,
+  //   value: graphs[key],
+  // }));
+
+  const onChange = (date, dateString) => {
+    setdate(dateString)
+  };
+
 
   const getBtaGraph = () => {
-    console.log(selectedType);
-    console.log(selectedSize);
+    // console.log(sheetName)
     navigate(
-      `/graph?type=${encodeURIComponent(
-        selectedType
-      )}&graph=${encodeURIComponent(selectedSize)}`
+      `/graph?type=${encodeURIComponent(selectedType)}
+      &size=${encodeURIComponent(selectedSize)}
+      &date=${encodeURIComponent(date)}
+      &sheet=${encodeURIComponent(sheetName)}`
     );
   };
 
@@ -41,12 +50,19 @@ export default function CastPage() {
         <Dropdown
           value={selectedSize}
           onChange={(e) => setselectedSize(e.value)}
-          options={graphOptions}
+          options={graphs}
           optionLabel="label"
           editable
           placeholder="Select a Size"
           className="w-full p-2 border border-gray-300 rounded-md shadow-sm"
         />
+      </div>
+      <div className="w-full mb-4 md:w-1/3">
+        <div className="w-full p-2 border border-gray-300 rounded-md shadow-sm">
+          <Space direction="vertical">
+            <DatePicker onChange={onChange} />
+          </Space>
+        </div>
       </div>
       <button
         onClick={getBtaGraph}

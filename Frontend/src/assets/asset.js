@@ -1,6 +1,6 @@
 const alloys = [6063, 6005, 6082];
 
-const graphs = {6 : 6,7 : 7}
+const graphs = [6,7]
 
 const dataforbta = {
   labels: [
@@ -28,12 +28,12 @@ const dataforbta = {
       fill: false,
     },
     {
-        label: "BTA - 6",
-        data: [90, 86, 97, 71, 80, 98, 91, 92, 85, 89, 85, 94, 94, 96, 97],
-        borderColor: "red",
-        fill: false,
-    }
+      label: "BTA - 6",
+      data: [90, 86, 97, 71, 80, 98, 91, 92, 85, 89, 85, 94, 94, 96, 97],
+      borderColor: "red",
+      fill: false,
+    },
   ],
 };
 
-export { alloys, dataforbta,graphs };
+export { alloys, dataforbta, graphs };

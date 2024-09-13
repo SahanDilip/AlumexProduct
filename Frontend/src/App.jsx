@@ -4,25 +4,25 @@ import Login from "./pages/LoginPage/Login";
 import AdminDash from "./pages/AdminPage/AdminDash";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import HomoginizedPage from "./pages/HomogenizedPage/HomoginizedPage";
-import Form from "./components/Form";
-import Graph from './pages/GraphPage/Graph';
+import Hormoginize_Form from "./components/HormoginizeForm";
+import Cast_Form from "./components/CastForm";
+import Graph from "./pages/GraphPage/Graph";
 
 function App() {
   return (
-    <div className='app'>
+    <div className="app">
       <Routes>
-        <Route path='/' element={<AdminDash/>} />
-        <Route path='/cast' element={<CastPage/>}/>
-        <Route path='/login' element={<Login/>} />
-        <Route path='/landingpage' element={<LandingPage/>} />
-        <Route path='/homoginizedpage' element={<HomoginizedPage/>} />
-        <Route path='/form' element={<Form/>} />
-        <Route path='/graph' element={<Graph />} />
-
+        <Route path="/" element={<AdminDash />} />
+        <Route path="/cast" element={<CastPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/landingpage" element={<LandingPage />} />
+        <Route path="/homoginizedpage" element={<HomoginizedPage />} />
+        <Route path="/hormoginize-add" element={<Hormoginize_Form />} />
+        <Route path="/cast-add" element={<Cast_Form />} />
+        <Route path="/graph" element={<Graph />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
-

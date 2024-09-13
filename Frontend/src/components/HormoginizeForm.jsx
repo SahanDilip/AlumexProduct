@@ -7,12 +7,15 @@ import { useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/base/Button";
 
-export default function Form() {
+export default function Hormoginize_Form() {
   const [formData, setFormData] = useState({
     Date: "",
-    Milt: "",
+    Melt_No: "",
     Size: "",
     BTA: "",
+    Grade: "",
+    Grain_Size: "",
+    Inverse_Segregasion_Zone: "",
   });
 
   const handleChange = (event) => {
@@ -26,15 +29,21 @@ export default function Form() {
     event.preventDefault();
     console.log(formData);
     axios
-      .post("http://localhost:5001/sheet", { data: formData })
-      .then((response) => {
-        console.log(response);
+      .post("http://localhost:5001/sheet", { data: formData,sheet: "Homogenize" })
+      .then((res) => {
+        if (res.status === 200) {
+          alert("Data added successfully");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center ">
+    <div className="flex justify-center items-center mt-10">
+      <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center bg-gray-300">
         <form onSubmit={handleSubmit}>
           <FormControl
             defaultValue=""
@@ -50,12 +59,12 @@ export default function Form() {
           <FormControl
             defaultValue=""
             required
-            value={formData.Milt}
+            value={formData.Melt_No}
             onChange={handleChange}
             className="m-1"
           >
-            <Label>Milt</Label>
-            <StyledInput placeholder="Enter the milt value" name="Milt" />
+            <Label>Melt No</Label>
+            <StyledInput placeholder="Enter the milt value" name="Melt_No" />
             <HelperText />
           </FormControl>
           <FormControl
@@ -90,9 +99,51 @@ export default function Form() {
             <StyledInput placeholder="Enter the BTA value" name="BTA" />
             <HelperText />
           </FormControl>
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Grade}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Grade</Label>
+            <StyledInput placeholder="Enter the Grade value" name="Grade" />
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Grain_Size}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Grain Size</Label>
+            <StyledInput
+              placeholder="Enter the Grain Size value"
+              name="Grain_Size"
+            />
+            <HelperText />
+          </FormControl>
+
+          <FormControl
+            defaultValue=""
+            required
+            value={formData.Inverse_Segregasion_Zone}
+            onChange={handleChange}
+            className="m-1"
+          >
+            <Label>Inverse Segregasion Zone</Label>
+            <StyledInput
+              placeholder="Enter the Inverse Segregasion Zone value"
+              name="Inverse_Segregasion_Zone"
+            />
+            <HelperText />
+          </FormControl>
+
           <Button
             onClick={handleSubmit}
-            className="flex btn justify-center mx-auto"
+            className="flex btn justify-center mx-auto rounded-xl mt-5"
             style={{
               backgroundColor: "#1f883d",
               padding: "8px",
