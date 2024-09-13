@@ -1,6 +1,8 @@
 const alloys = [6063, 6005, 6082];
 
-const graphs = { Bta: 10, Grain_Size: 20, Inverse_Segregarian: 30 };
+
+const graphs = [6,7]
+
 
 const dataforbta = {
   labels: [

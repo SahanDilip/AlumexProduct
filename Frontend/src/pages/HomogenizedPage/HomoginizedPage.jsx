@@ -2,55 +2,67 @@ import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { alloys, graphs } from "../../assets/asset";
 import { useNavigate } from "react-router-dom";
+import { DatePicker, Space } from 'antd';
 
 export default function HomoginizedPage() {
   const [selectedType, setSelectedType] = useState(null);
-  const [selectedGraph, setSelectedGraph] = useState(null);
+  const [selectedSize, setselectedSize] = useState(null);
+  const [date, setdate] = useState(new Date());
+  const sheetName = "Homogenize";
   const navigate = useNavigate();
 
-  // Convert the graphs object into an array of options
-  const graphOptions = Object.keys(graphs).map((key) => ({
-    label: key,
-    value: graphs[key],
-  }));
+  const onChange = (date, dateString) => {
+    setdate(dateString);
+  };
 
   const getBtaGraph = () => {
-    console.log(selectedType);
-    console.log(selectedGraph);
-    // Perform further actions, e.g., navigate to a different page
-    // setChartData(dataforbta);
     navigate(
-      `/graph?type=${encodeURIComponent(
-        selectedType
-      )}&graph=${encodeURIComponent(selectedGraph)}`
+      `/graph?type=${encodeURIComponent(selectedType)}&size=${encodeURIComponent(selectedSize)}&date=${encodeURIComponent(date)}&sheet=${encodeURIComponent(sheetName)}`
     );
   };
 
   return (
-    <div>
-      <div className="container">
-        <Dropdown
-          value={selectedType}
-          onChange={(e) => setSelectedType(e.value)}
-          options={alloys}
-          optionLabel="name"
-          editable
-          placeholder="Select a Type"
-          className="dropdown val"
-        />
+    <div className="flex items-center justify-center min-h-screen mt-10">
+      <div className="flex items-center gap-3 p-5 mx-auto bg-gray-300 shadow-xl rounded-xl w-96">
+        <form className="w-full">
+          <div className="mb-4">
+            <Dropdown
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.value)}
+              options={alloys}
+              optionLabel="name"
+              editable
+              placeholder="Select a Type"
+              className="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+            />
+          </div>
+          <div className="mb-4">
+            <Dropdown
+              value={selectedSize}
+              onChange={(e) => setselectedSize(e.value)}
+              options={graphs}
+              optionLabel="label"
+              editable
+              placeholder="Select a Size"
+              className="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+            />
+          </div>
+          <div className="mb-4">
+            <div className="w-full p-2 border border-gray-300 rounded-md shadow-sm">
+              <Space direction="vertical">
+                <DatePicker onChange={onChange} />
+              </Space>
+            </div>
+          </div>
+          <button
+            onClick={getBtaGraph}
+            type="button"
+            className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded shadow-md hover:bg-blue-600"
+          >
+            Show Graph
+          </button>
+        </form>
       </div>
-      <div className="container">
-        <Dropdown
-          value={selectedGraph}
-          onChange={(e) => setSelectedGraph(e.value)}
-          options={graphOptions}
-          optionLabel="label" // This is the name of the option (e.g., "BTA", "GRAIN_SIZE")
-          editable
-          placeholder="Select a Graph"
-          className="dropdown val"
-        />
-      </div>
-      <button onClick={getBtaGraph}>Show Graph</button>
     </div>
   );
 }
