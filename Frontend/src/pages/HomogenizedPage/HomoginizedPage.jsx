@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { alloys, graphs } from "../../assets/asset";
 import { useNavigate } from "react-router-dom";
-import { DatePicker, Space } from 'antd';
+import { DatePicker, Space } from "antd";
+import useAuth from "../../hooks/useAuth";
 
 export default function HomoginizedPage() {
   const [selectedType, setSelectedType] = useState(null);
@@ -10,6 +11,10 @@ export default function HomoginizedPage() {
   const [date, setdate] = useState(new Date());
   const sheetName = "Homogenize";
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   const onChange = (date, dateString) => {
     setdate(dateString);
@@ -17,12 +22,16 @@ export default function HomoginizedPage() {
 
   const getBtaGraph = () => {
     navigate(
-      `/graph?type=${encodeURIComponent(selectedType)}&size=${encodeURIComponent(selectedSize)}&date=${encodeURIComponent(date)}&sheet=${encodeURIComponent(sheetName)}`
+      `/graph?type=${encodeURIComponent(
+        selectedType
+      )}&size=${encodeURIComponent(selectedSize)}&date=${encodeURIComponent(
+        date
+      )}&sheet=${encodeURIComponent(sheetName)}`
     );
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen mt-10">
+    <div className="flex items-center justify-center min-h-screen mt-10 flex-col">
       <div className="flex items-center gap-3 p-5 mx-auto bg-gray-300 shadow-xl rounded-xl w-96">
         <form className="w-full">
           <div className="mb-4">
@@ -63,6 +72,21 @@ export default function HomoginizedPage() {
           </button>
         </form>
       </div>
+      {user.role === "admin" && (
+        <button
+          className="flex btn justify-center mx-auto rounded-xl mt-10"
+          style={{
+            backgroundColor: "#1f883d",
+            padding: "8px",
+            marginTop: "16px",
+            color: "white",
+            cursor: "pointer",
+          }}
+          onClick={() => navigate("/hormoginize-add")}
+        >
+          Add New Data
+        </button>
+      )}
     </div>
   );
 }
