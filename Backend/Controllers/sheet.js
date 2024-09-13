@@ -27,10 +27,12 @@ const doc = new GoogleSpreadsheet(
 export const getData = async (req, res, next) => {
   try {
     const { size, date, grade, sheet } = req.query;
+
     await doc.loadInfo();
 
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
+
 
     const filteredRows = rows.filter(
       (row) =>
