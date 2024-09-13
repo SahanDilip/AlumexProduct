@@ -53,7 +53,7 @@ export default function Login() {
         if (role === "user") {
           navigate("/", { replace: true });
         }
-        if (role === "admin") navigate("/admin", { replace: true });
+        if (role === "admin") navigate("/", { replace: true });
       } else {
         setAlert(data.message);
         setAlertStyle("text-red-600 text-s mt-1 flex justify-center");
