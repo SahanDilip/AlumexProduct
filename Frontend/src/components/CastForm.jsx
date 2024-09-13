@@ -4,10 +4,13 @@ import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
 import { useState } from "react";
-import axios from "../api/axios";
+import { axiosPrivate } from "../api/axios";
 import { Button } from "@mui/base/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function Cast_Form() {
+  
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Date: "",
     Melt_No: "",
@@ -26,7 +29,7 @@ export default function Cast_Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    axios
+    axiosPrivate
       .post("/sheet", { data: formData, sheet: "Cast" })
       .then((res) => {
         if (res.status === 200) {
@@ -113,6 +116,7 @@ export default function Cast_Form() {
             />
             <HelperText />
           </FormControl>
+          
 
           <Button
             onClick={handleSubmit}
