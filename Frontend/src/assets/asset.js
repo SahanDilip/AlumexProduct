@@ -1,6 +1,8 @@
 const alloys = [6063, 6005, 6082];
 
+
 const graphs = [6,7]
+
 
 const dataforbta = {
   labels: [

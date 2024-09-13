@@ -20,17 +20,12 @@ const doc = new GoogleSpreadsheet(
 export const getData = async (req, res, next) => {
   try {
     const { size, date, grade, sheet } = req.query;
-    console.log(req.query)
-
-    console.log(size)
-    console.log(date)
-    console.log(grade)
-    console.log(sheet)
 
     await doc.loadInfo();
 
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
+
 
     const filteredRows = rows.filter(
       (row) =>
