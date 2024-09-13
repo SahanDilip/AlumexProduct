@@ -6,7 +6,7 @@ function AdminDash() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-end justify-center min-h-screen gap-4 pr-20 text-6xl text-left text-white bg-lime-400">
+    <div className="flex flex-col items-end justify-center min-h-screen gap-4 pr-20 text-6xl text-left text-white bg-slate-400">
       <div>
         {/* Large Button */}
         <Button
