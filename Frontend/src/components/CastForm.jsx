@@ -4,7 +4,7 @@ import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../api/axios";
 import { Button } from "@mui/base/Button";
 
 export default function Cast_Form() {
@@ -27,7 +27,7 @@ export default function Cast_Form() {
     event.preventDefault();
     console.log(formData);
     axios
-      .post("http://localhost:5001/sheet", { data: formData, sheet: "Cast" })
+      .post("/sheet", { data: formData, sheet: "Cast" })
       .then((res) => {
         if (res.status === 200) {
           alert("Data added successfully");

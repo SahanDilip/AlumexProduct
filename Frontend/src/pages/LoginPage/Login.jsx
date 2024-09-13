@@ -1,13 +1,13 @@
 "use client";
-import React, { useState, useContext } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
-  const { setUser } = useAuth();
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState("");
@@ -34,15 +34,22 @@ export default function Login() {
       );
       const data = response.data;
       if (response.status === 200) {
-        setAlert("Successfullly Logged In");
-
+        setAlert("Successfully Logged In");
         setAlertStyle("text-green-600 text-s mt-1 flex justify-center");
 
         const accessToken = data?.token;
         const role = data?.role;
-        setUser({ email, accessToken, role });
+
+        // Set user data in AuthContext
+        login({ email, role, accessToken });
+
         setEmail("");
         setPassword("");
+        setTimeout(() => {
+          setAlert("");
+        }, 5000);
+
+        // Navigate based on role
         if (role === "user") {
           navigate("/", { replace: true });
         }
@@ -53,20 +60,15 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
+      setAlert("Login failed. Please try again.");
+      setAlertStyle("text-red-600 text-s mt-1 flex justify-center");
     }
-    setTimeout(() => {
-      setAlert("");
-    }, 5000);
   };
 
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 w-screen bg-gray-900">
-      <div className="w-full p-6  rounded-lg shadow border md:mt-0 sm:max-w-md bg-gray-800 border-gray-700 sm:p-8">
-        <h1
-          className="flex leading-tight tracking-tight justify-center text-2xl sm:text-3xl font-semibold 
-          text-white
-        "
-        >
+      <div className="w-full p-6 rounded-lg shadow border md:mt-0 sm:max-w-md bg-gray-800 border-gray-700 sm:p-8">
+        <h1 className="flex leading-tight tracking-tight justify-center text-2xl sm:text-3xl font-semibold text-white">
           Login Now
         </h1>
         <form onSubmit={onsubmit}>
@@ -92,7 +94,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  style={{ paddingRight: "40px" }} // Make room for the icon
+                  style={{ paddingRight: "40px" }}
                 />
                 <span
                   onClick={toggleShowPassword}

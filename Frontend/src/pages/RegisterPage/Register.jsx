@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import validator from "validator";
-import axios from "axios";
+import axios from "../../api/axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function Register() {
@@ -89,7 +89,7 @@ export default function Register() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("auth/register", {
+      const response = await axios.post("/auth/register", {
         email: email,
         phone_number: phone,
         full_name: firstName + " " + lastName,
@@ -97,10 +97,7 @@ export default function Register() {
         avatar: "",
         address: address,
         birthday: dateValue,
-        role: "customer",
-        is_completed: 0,
-        is_active: 0,
-        stripe_customer_id: "",
+        role: "user",
         password: password,
       });
       if (response.status === 400) {
@@ -247,8 +244,12 @@ export default function Register() {
                     Gender
                   </option>
 
-                  <option value="Male" className="py-2">Male</option>
-                  <option value="Female"  className="py-2">Female</option>
+                  <option value="Male" className="py-2">
+                    Male
+                  </option>
+                  <option value="Female" className="py-2">
+                    Female
+                  </option>
                 </select>
                 <svg
                   className="w-4 h-4 absolute left-5 top-1/2 transform -translate-y-1/2 pointer-events-none"
@@ -347,8 +348,7 @@ export default function Register() {
                   <span className="text-[#E9522C] font-semibold">Login</span>
                 </Link>
               </p>
-              <div className="mb-3 text-center">
-              </div>
+              <div className="mb-3 text-center"></div>
             </div>
           </div>
         </form>
