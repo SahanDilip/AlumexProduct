@@ -17,7 +17,7 @@ export default function HomogenizedPage() {
   }
 
   const [selectedType, setSelectedType] = useState(null);
-  const [selectedSize, setselectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
   const [startdate, setStartDate] = useState(new Date());
   const [enddate, setEndDate] = useState(new Date());
   const sheetName = "Homogenize";
@@ -41,7 +41,7 @@ export default function HomogenizedPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen mt-10">
-      <div className="flex items-center gap-3 p-5 mx-auto bg-gray-300 shadow-xl rounded-xl w-96">
+      <div className="flex items-center gap-3 p-10 mx-auto bg-gray-300 shadow-xl rounded-xl w-[500px]"> {/* Increased the width to 500px */}
         <form className="w-full">
           <div className="mb-4">
             <Dropdown
@@ -50,28 +50,28 @@ export default function HomogenizedPage() {
               options={alloys}
               optionLabel="name"
               editable
-              placeholder="Select a Type"
-              className="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+              placeholder="Select a Alloy Type"
+              className="w-full p-2 bg-white border border-gray-400 rounded-md shadow-sm" // Removed transparency and set background to white
             />
           </div>
           <div className="mb-4">
             <Dropdown
               value={selectedSize}
-              onChange={(e) => setselectedSize(e.value)}
+              onChange={(e) => setSelectedSize(e.value)}
               options={graphs}
               optionLabel="label"
               editable
               placeholder="Select a Size"
-              className="w-full p-2 border border-gray-300 rounded-md shadow-sm"
+              className="w-full p-2 bg-white border border-gray-400 rounded-md shadow-sm" // Removed transparency and set background to white
             />
           </div>
           <div className="mb-4">
-            <div className="w-full p-2 border border-gray-300 rounded-md shadow-sm">
+            <div className="w-full p-2 bg-white border border-gray-400 rounded-md shadow-sm"> {/* Added bg-white to remove transparency */}
               <Space direction="vertical">
                 <RangePicker
                   defaultValue={[
-                    dayjs("2015/01/01", dateFormat),
-                    dayjs("2015/01/01", dateFormat),
+                    dayjs("2024/01/01", dateFormat),
+                    dayjs("2024/01/01", dateFormat),
                   ]}
                   format={dateFormat}
                   onChange={changeDateHandler}
