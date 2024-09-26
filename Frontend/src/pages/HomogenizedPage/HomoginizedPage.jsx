@@ -98,7 +98,7 @@ export default function HomogenizedPage() {
             color: "white",
             cursor: "pointer",
           }}
-          onClick={() => navigate("/homogenize-add")}
+          onClick={() => navigate("/hormoginize-add")}
         >
           Add New Data
         </button>
