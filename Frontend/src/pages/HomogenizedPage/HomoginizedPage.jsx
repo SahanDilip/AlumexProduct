@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 export default function HomogenizedPage() {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
-  
+
   if (loading) {
     return <div>Loading...</div>;
   }

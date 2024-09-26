@@ -96,7 +96,7 @@ export const login = async (req, res, next) => {
     );
     res.cookie("authToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", 
+      secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
     });
     res.json({ token, role: user.role });
