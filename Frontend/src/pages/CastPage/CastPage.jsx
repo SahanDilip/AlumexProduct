@@ -4,6 +4,9 @@ import { alloys, graphs } from "../../assets/asset";
 import { useNavigate } from "react-router-dom";
 import { DatePicker, Space } from "antd";
 import useAuth from "../../hooks/useAuth";
+const { RangePicker } = DatePicker;
+const dateFormat = 'YYYY/MM/DD';
+import dayjs from 'dayjs';
 
 export default function CastPage() {
   const navigate = useNavigate();
@@ -13,25 +16,32 @@ export default function CastPage() {
   }
   const [selectedType, setSelectedType] = useState(null);
   const [selectedSize, setselectedSize] = useState(null);
-  const [date, setdate] = useState(new Date());
+  const [startdate, setStartDate] = useState(new Date());
+  const [enddate, setEndDate] = useState(new Date());
   const sheetName = "Cast";
 
-  const onChange = (date, dateString) => {
-    setdate(dateString);
+  const changeDateHandler = (date, dateString) => {
+    setStartDate(dateString[0]);
+    setEndDate(dateString[1]);
   };
+  
 
   const getBtaGraph = () => {
     navigate(
       `/graph?type=${encodeURIComponent(
         selectedType
-      )}&size=${encodeURIComponent(selectedSize)}&date=${encodeURIComponent(
-        date
-      )}&sheet=${encodeURIComponent(sheetName)}`
+      )}&size=${encodeURIComponent(selectedSize)}&startdate=${encodeURIComponent(
+        startdate
+      )}&enddate=${encodeURIComponent(
+        enddate
+      )}&sheet=${encodeURIComponent(
+        sheetName
+      )}`
     );
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen mt-10 flex-col">
+    <div className="flex flex-col items-center justify-center min-h-screen mt-10">
       <div className="flex items-center gap-3 p-5 mx-auto bg-gray-300 shadow-xl rounded-xl w-96">
         <form className="w-full">
           <div className="mb-4">
@@ -59,7 +69,14 @@ export default function CastPage() {
           <div className="mb-4">
             <div className="w-full p-2 border border-gray-300 rounded-md shadow-sm">
               <Space direction="vertical">
-                <DatePicker onChange={onChange} />
+                <RangePicker
+                  defaultValue={[
+                    dayjs("2015/01/01", dateFormat),
+                    dayjs("2015/01/01", dateFormat),
+                  ]}
+                  format={dateFormat}
+                  onChange={changeDateHandler}
+                />
               </Space>
             </div>
           </div>
@@ -74,7 +91,7 @@ export default function CastPage() {
       </div>
       {user.role === "admin" && (
         <button
-          className="flex btn justify-center mx-auto rounded-xl mt-10"
+          className="flex justify-center mx-auto mt-10 btn rounded-xl"
           style={{
             backgroundColor: "#1f883d",
             padding: "8px",
