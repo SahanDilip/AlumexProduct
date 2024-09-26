@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import useAuth from "./hooks/useAuth";
 import CastPage from "./pages/CastPage/CastPage";
 import Login from "./pages/LoginPage/Login";
-import AdminDash from "./pages/AdminPage/AdminDash";
+import HomePage from "./pages/Home/HomePage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import HomoginizedPage from "./pages/HomogenizedPage/HomoginizedPage";
 import Hormoginize_Form from "./components/HormoginizeForm";
@@ -23,7 +23,6 @@ function ProtectedRoute({ roleRequired }) {
   }
 
   if (roleRequired && user.role !== roleRequired) {
-   
     return <Navigate to="/landingpage" LandingPage />;
   }
 
@@ -44,7 +43,7 @@ function App() {
         </Route>
 
         <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<AdminDash />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/homoginizedpage" element={<HomoginizedPage />} />
           <Route path="/cast" element={<CastPage />} />
           <Route path="/graph" element={<Graph />} />
