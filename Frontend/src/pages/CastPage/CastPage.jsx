@@ -59,7 +59,7 @@ export default function CastPage() {
           <div className="mb-4">
             <Dropdown
               value={selectedSize}
-              onChange={(e) => setselectedSize(e.value)}
+              onChange={(e) => setSelectedSize(e.value)}
               options={graphs}
               optionLabel="label"
               editable
