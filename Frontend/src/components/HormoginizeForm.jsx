@@ -4,7 +4,7 @@ import { Input, inputClasses } from "@mui/base/Input";
 import { styled } from "@mui/system";
 import clsx from "clsx";
 import { useState } from "react";
-import axios from "../api/axios";
+import { axiosPrivate } from "../api/axios";
 import { Button } from "@mui/base/Button";
 
 export default function Hormoginize_Form() {
@@ -28,7 +28,7 @@ export default function Hormoginize_Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    axios
+    axiosPrivate
       .post("/sheet", {
         data: formData,
         sheet: "Homogenize",
