@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const credentials = JSON.parse(
-  fs.readFileSync("carbon-compound-434603-b2-33a8c9212c39.json")
+  fs.readFileSync("alumex-436803-b8034a0a2127.json")
 );
 
 const serviceAccountAuth = new JWT({
@@ -29,10 +29,8 @@ export const getData = async (req, res, next) => {
     const { size, date, grade, sheet } = req.query;
 
     await doc.loadInfo();
-
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
-
 
     const filteredRows = rows.filter(
       (row) =>
@@ -56,7 +54,7 @@ export const getData = async (req, res, next) => {
       res.json([]);
     }
   } catch (error) {
-    console.error(error);
+    console.error("Eroorrroororororo");
     res.status(500).json({ error: "An error occurred while fetching data." });
   }
 };
