@@ -113,7 +113,7 @@ export default function Login() {
 
               <button
                 type="submit"
-                className="mt-1 tracking-wide font-semibold bg-[#E9522C] text-gray-100 w-full py-3 md:py-4 rounded-lg hover:bg-[#E9522C]/90 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                className="mt-1 tracking-wide font-semibold bg-[#26ad29] text-gray-100 w-full py-3 md:py-4 rounded-lg hover:bg-[#26ad29]/90 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               >
                 <svg
                   className="w-6 h-6"
@@ -136,7 +136,7 @@ export default function Login() {
               <p className="mt-2 text-xs text-gray-200 text-center">
                 Haven't Registered Yet?{" "}
                 <Link to={"/register"}>
-                  <span className="text-[#E9522C] font-semibold">Register</span>
+                  <span className="text-[#26ad29] font-semibold">Register</span>
                 </Link>
               </p>
               <div className="mt-5 text-center"></div>
