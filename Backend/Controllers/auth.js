@@ -123,3 +123,8 @@ export const verifyToken = (req, res, next) => {
     return res.status(403).json({ message: "Invalid token" });
   }
 };
+
+export const logout = (req, res) => {
+  res.clearCookie("authToken");
+  res.status(200).json({ message: "Logged out" });
+};

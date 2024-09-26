@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { axiosPrivate } from "../../api/axios";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -17,6 +18,14 @@ const NavBar = () => {
     Home: "/",
     About: "#about",
     Contact: "#contact",
+  };
+
+  const logout = () => {
+    axiosPrivate.get("auth/logout").then((res) => {
+      if (res.status === 200) {
+        navigate("/login");
+      }
+    });
   };
 
   const getSelectedItem = () => {
@@ -89,7 +98,7 @@ const NavBar = () => {
 
       <div className="flex items-center ">
         <Link
-          to="/login"
+          onClick={logout}
           className="cursor-pointer bg-green-800 hover:bg-green-900 rounded-xl"
         >
           <div className="flex flex-row gap-3 text-white px-4 py-2 rounded-xl  ">
