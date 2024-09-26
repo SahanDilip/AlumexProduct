@@ -26,7 +26,7 @@ const doc = new GoogleSpreadsheet(
 
 export const getData = async (req, res, next) => {
   try {
-    const { size, date, grade, sheet } = req.query;
+    const { size,grade, sheet } = req.query;
 
     await doc.loadInfo();
     const spreadsheet = doc.sheetsByTitle[sheet];
@@ -34,7 +34,6 @@ export const getData = async (req, res, next) => {
 
     const filteredRows = rows.filter(
       (row) =>
-        row._rawData[0] === date &&
         row._rawData[2] === size &&
         row._rawData[1] === grade
     );

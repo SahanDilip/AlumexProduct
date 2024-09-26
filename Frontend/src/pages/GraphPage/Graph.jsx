@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import annotationPlugin from 'chartjs-plugin-annotation';
 import axios from "axios";
 
 // Register the required components with Chart.js
@@ -20,7 +21,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  annotationPlugin // Register the annotation plugin
 );
 
 import { useLocation } from "react-router-dom";
@@ -30,7 +32,8 @@ export default function Graph() {
   const params = new URLSearchParams(location.search);
   const selectedType = params.get("type");
   const selectedSize = params.get("size");
-  const selectedDate = params.get("date");
+  const startDate = params.get("startdate");
+  const endDate = params.get("enddate");
   const sheetName = params.get("sheet");
 
   const [chartDataBta, setChartDataBta] = useState(null);
@@ -38,11 +41,18 @@ export default function Graph() {
   const [chartDataIzone, setChartDataIzone] = useState(null);
   const [chartDataDendrite, setChartDataDendrite] = useState(null);
 
+
+  const [btamax, setbtamax] = useState(85);
+  const [btamin, setbtamin] = useState(85);
+  const [grainmax, setgrainmax] = useState(120);
+  const [grainmin, setgrainmin] = useState(80);
+  const [izoneMax, setizoneMax] = useState(600);
+  const [izoneMin, setizoneMin] = useState(400);
+
   const fetchData = async () => {
     try {
       const response = await axios.get("http://localhost:5001/sheet", {
         params: {
-          date: selectedDate.trim(),
           size: selectedSize.trim(),
           grade: selectedType.trim(),
           sheet: sheetName.trim(),
@@ -51,16 +61,28 @@ export default function Graph() {
 
       if (response.status === 200) {
         const fetchedData = response.data;
-        console.log(fetchedData);
-
-        const labels = fetchedData.map((item) => item.Melt_No);
-        const dataBta = fetchedData.map((item) => item.BTA);
-        const dataGrainSize = fetchedData.map((item) => item.Grain_Size);
-        const dataIzone = fetchedData.map(
+        console.log("fetched data", fetchedData);
+    
+        const filteredData = fetchedData.filter((item) => {
+            const itemDate = new Date(item.Date);
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+    
+            // Normalize the time part to 00:00:00 for comparison
+            start.setHours(0, 0, 0, 0);
+            end.setHours(23, 59, 59, 999); // Set to end of the day
+            itemDate.setHours(0, 0, 0, 0);
+    
+            return itemDate >= start && itemDate <= end;
+        });
+        
+        const labels = filteredData.map((item) => item.Melt_No);
+        const dataBta = filteredData.map((item) => item.BTA);
+        const dataGrainSize = filteredData.map((item) => item.Grain_Size);
+        const dataIzone = filteredData.map(
           (item) => item.Inverse_Segregasion_Zone
         );
-        console.log(dataIzone);
-        const dataDendrite = fetchedData.map(
+        const dataDendrite = filteredData.map(
           (item) => item.Dendrite_Arm_Spacing
         );
 
@@ -76,6 +98,27 @@ export default function Graph() {
                 fill: false,
               },
             ],
+            options: {
+              responsive: true,
+              plugins: {
+                annotation: {
+                  annotations: {
+                    line1: {
+                      type: 'line',
+                      yMin: 85,
+                      yMax: 85,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      label: {
+                        display: true,
+                        content: '85 Margin',
+                        position: 'start',
+                      },
+                    },
+                  },
+                },
+              },
+            }
           });
 
           setChartDataGrainSize({
@@ -88,6 +131,39 @@ export default function Graph() {
                 fill: false,
               },
             ],
+            options: {
+              responsive: true,
+              plugins: {
+                annotation: {
+                  annotations: {
+                    line1: {
+                      type: 'line',
+                      yMin: 80,
+                      yMax: 80,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      label: {
+                        display: true,
+                        content: '80 Margin',
+                        position: 'start',
+                      },
+                    },
+                    line2: {
+                      type: 'line',
+                      yMin: 120,
+                      yMax: 120,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      label: {
+                        display: true,
+                        content: '120 Margin',
+                        position: 'start',
+                      },
+                    },
+                  },
+                },
+              },
+            }
           });
 
           setChartDataIzone({
@@ -100,6 +176,39 @@ export default function Graph() {
                 fill: false,
               },
             ],
+            options: {
+              responsive: true,
+              plugins: {
+                annotation: {
+                  annotations: {
+                    line1: {
+                      type: 'line',
+                      yMin: 400,
+                      yMax: 400,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      label: {
+                        display: true,
+                        content: '400 Margin',
+                        position: 'start',
+                      },
+                    },
+                    line2: {
+                      type: 'line',
+                      yMin: 600,
+                      yMax: 600,
+                      borderColor: 'black',
+                      borderWidth: 2,
+                      label: {
+                        display: true,
+                        content: '600 Margin',
+                        position: 'start',
+                      },
+                    },
+                  },
+                },
+              },
+            }
           });
         } else if (sheetName === "Cast") {
           setChartDataDendrite({
@@ -112,6 +221,9 @@ export default function Graph() {
                 fill: false,
               },
             ],
+            options: {
+              responsive: true,
+            }
           });
         }
 
@@ -126,7 +238,7 @@ export default function Graph() {
 
   useEffect(() => {
     fetchData();
-  }, [selectedSize, selectedDate, selectedType, sheetName]);
+  }, [selectedSize, startDate,endDate, selectedType, sheetName]);
 
   return (
     <div className="flex flex-wrap">
@@ -135,7 +247,7 @@ export default function Graph() {
           <div className="w-2/4 h-2/4">
             <h2>BTA Graph</h2>
             {chartDataBta ? (
-              <Line data={chartDataBta} options={{ responsive: true }} />
+              <Line data={chartDataBta} options={chartDataBta.options} />
             ) : (
               <p>Loading BTA Data...</p>
             )}
@@ -144,7 +256,10 @@ export default function Graph() {
           <div className="w-2/4 h-2/4">
             <h2>Grain Size Graph</h2>
             {chartDataGrainSize ? (
-              <Line data={chartDataGrainSize} options={{ responsive: true }} />
+              <Line
+                data={chartDataGrainSize}
+                options={chartDataGrainSize.options}
+              />
             ) : (
               <p>Loading Grain Size Data...</p>
             )}
@@ -153,7 +268,10 @@ export default function Graph() {
           <div className="w-2/4 h-2/4">
             <h2>Inverse Segregation Zone Graph</h2>
             {chartDataIzone ? (
-              <Line data={chartDataIzone} options={{ responsive: true }} />
+              <Line
+                data={chartDataIzone}
+                options={chartDataIzone.options}
+              />
             ) : (
               <p>Loading Inverse Segregation Zone Data...</p>
             )}
@@ -166,7 +284,10 @@ export default function Graph() {
           <div className="w-2/4 h-2/4">
             <h2>Dendrite Arm Spacing Graph</h2>
             {chartDataDendrite ? (
-              <Line data={chartDataDendrite} options={{ responsive: true }} />
+              <Line
+                data={chartDataDendrite}
+                options={chartDataDendrite.options}
+              />
             ) : (
               <p>Loading Dendrite Arm Spacing Data...</p>
             )}
