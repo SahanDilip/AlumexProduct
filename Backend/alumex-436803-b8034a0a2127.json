@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "alumex-436803",
+  "private_key_id": "b8034a0a2127c230341c4200be39830aa01275af",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCtnQhz34I1+0eM\ne+aZUcGgNqyvOAiu2j9g3SfGGf3Y+++CiB8GSeiKUHCRGMv1sClU8ygZomI27eSx\n26Yxg5opLs+0VVrB1cIGhy2VcuJ+I1LsyBi4cjWfR4LcWonDt6LyXemtEf1cPyKp\nok6gXKWWnfaNPrP3CAOYgfwYDu73hacFmXLMrL8qLSxWVB8wD/YxoiC318J48Cab\n+1AVv06NtNFW1GvxzYh3ubkbO9HJ0duQuHJfsdB19sGoiSTA+tMjSxtRmFTcuNuv\n73QK8I1dMbU9zoC4YF+FAm8hFSROlKa7Hr1DPfx4VeOi/SidyZV9/jgq/YmkR7NX\nedaErUDbAgMBAAECggEABDTHTvrr8cprJ1hi5aAHcuNZGz2laDVLpDzpM8bOw2Xq\nugeIAcep87jMEyYTUES6xkmpY0WaUVOze2OjmSKcpqT/eCCPfFa6jcdEoXRJ+rMH\nDi7bwZNWViFVLaH0zAzesDZPl6y5A1mRkMBTeY6vuo6oudn6YcQ2092CVWA3Ps6T\npGA0x1pLqFCG/Dzuwk813eiZw3t6SLd2jxkKEEIigAdSAWgPVuyaP2rneY6Gi9n8\ntir6j/fhKFw4rE5XbQ1XSJnBMTCwfP2HPtXKKNSPzqdiy3f9d4XDJ+VnvWoMvz62\ncqO1SoOK+m1TAEVOiOSL82HYzSfIrkmRTzxWgPFBoQKBgQDq+M6cUPZaEWAvcqLE\n1cgatq0e7iCNSDuvrADIeUQ9vfG8UcRVa5nfFIvHJcUEJR5C2KSyVAckfz4RJP+T\nvZG4NqN0NnBwj4dt0UIYEBrLivvPnviZUZBYtxtd9vAOdBrNDZUpUJZR76iunR6r\ntIIK893biu4rg+BRftcNW7jLIwKBgQC9JoGhtMtfDQTZ3ku5R3B+wL+sm8L2K80f\n2oKQt7b+QvI6WBrAlx9fXGayt7HC+iPUmb5uM8KRRKSHugyZ9f6H2tLcRIWZ75GO\njyYD4hqgKR57Wz4WfPjMYtN0mhv+m0C3YuFDZ1wToD1C4esmLBsVmrZQPvCnED2Z\nQIahU48K6QKBgQDA33ihASgmaGrep6eKEL1PiDF02RxpPCiaG4MNC9WDJL4fybJy\nN3+3iKLv1kXxEBLV5gTSyHyQbc3hvs/3Ur0hS+BBzUnga0BMWV96ZwXHnA70rtX6\n6+OjnrHdIIyOIKm7NXIB1r99BE8e/aOmZ+Xy3Zh31IOJvpdL7eTSdz6ppwKBgAjr\nzwNkdo8WGxt3e5TShMDFsISgmBJqQHN3J99ReuUFHU2ZKDHbLtSdlA5r0YuDprr5\nQV0LPesCFMx9/ugoDQg1TuqqpK58+R2DLOTT/jN9nP1ucUA4RrfFFXoTZqycf/Hm\nTP+T2WjnjtwfsaqMO/7J3D1uqoUGpBEdVPw45685AoGAXKlUWpgIb21pHuQNffzB\nzwe5Bh1Q3NCAzy6mHvwZVu03SCVfHpaVnJsDzu22DqbMT5/mdkoVHRu5yXn+qReq\n0aBofx3yocdjCRvNpgb8dCykddEzQi+tumwwEDSJQna9K5FR6+RNVnyowOq8qStZ\nx0z/FqpnHqPwwyLCTkS7GJw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "alumex@alumex-436803.iam.gserviceaccount.com",
+  "client_id": "111784425664010515361",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/alumex%40alumex-436803.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
