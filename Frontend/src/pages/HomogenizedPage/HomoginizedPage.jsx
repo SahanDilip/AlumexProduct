@@ -40,7 +40,7 @@ export default function HomogenizedPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen mt-10">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
       <div className="flex items-center gap-3 p-10 mx-auto bg-gray-300 shadow-xl rounded-xl w-[500px]"> {/* Increased the width to 500px */}
         <form className="w-full">
           <div className="mb-4">
