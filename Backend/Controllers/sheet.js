@@ -54,7 +54,7 @@ export const getData = async (req, res, next) => {
     }
   } catch (error) {
     console.error("Eroorrroororororo");
-    res.status(500).json({ error: "An error occurred while fetching data." });
+    res.status(500).json({ error: error.message });
   }
 };
 
