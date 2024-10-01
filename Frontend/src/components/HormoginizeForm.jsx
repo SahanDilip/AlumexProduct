@@ -45,7 +45,7 @@ export default function Hormoginize_Form() {
   };
 
   return (
-    <div className="flex justify-center items-center mt-10">
+    <div className="flex justify-center items-center bg-gray-900 min-h-screen">
       <div className="flex p-5 shadow-xl rounded-xl w-96 gap-3 mx-auto items-center bg-gray-300">
         <form onSubmit={handleSubmit}>
           <FormControl

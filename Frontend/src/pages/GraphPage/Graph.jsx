@@ -42,12 +42,12 @@ export default function Graph() {
   const [chartDataDendrite, setChartDataDendrite] = useState(null);
 
 
-  const [btamax, setbtamax] = useState(85);
-  const [btamin, setbtamin] = useState(85);
-  const [grainmax, setgrainmax] = useState(120);
-  const [grainmin, setgrainmin] = useState(80);
-  const [izoneMax, setizoneMax] = useState(600);
-  const [izoneMin, setizoneMin] = useState(400);
+  // const [btamax, setbtamax] = useState(85);
+  // const [btamin, setbtamin] = useState(85);
+  // const [grainmax, setgrainmax] = useState(120);
+  // const [grainmin, setgrainmin] = useState(80);
+  // const [izoneMax, setizoneMax] = useState(600);
+  // const [izoneMin, setizoneMin] = useState(400);
 
   const fetchData = async () => {
     try {
@@ -107,14 +107,36 @@ export default function Graph() {
                       type: 'line',
                       yMin: 85,
                       yMax: 85,
-                      borderColor: 'black',
+                      borderColor: 'red',
                       borderWidth: 2,
+                      borderDash: [5, 5],
                       label: {
                         display: true,
-                        content: '85 Margin',
+                        content: '85%_Min BTA Level',
                         position: 'start',
                       },
                     },
+                    line2: {
+                      type: 'line',
+                      yMin: 90,
+                      yMax: 90,
+                      borderColor: 'red',
+                      borderWidth: 2,
+                      borderDash: [5, 5],
+                      label: {
+                        display: true,
+                        content: '90%_Optimum BTA Level',
+                        position: 'start',
+                      },
+                    },
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  title: {
+                    display: true,
+                    text: 'BTA Percentage(%)', // Replace with your desired title
                   },
                 },
               },
@@ -140,11 +162,12 @@ export default function Graph() {
                       type: 'line',
                       yMin: 80,
                       yMax: 80,
-                      borderColor: 'black',
+                      borderColor: 'red',
                       borderWidth: 2,
+                      borderDash: [5, 5],
                       label: {
                         display: true,
-                        content: '80 Margin',
+                        content: '80µm_Lower Limit',
                         position: 'start',
                       },
                     },
@@ -152,14 +175,23 @@ export default function Graph() {
                       type: 'line',
                       yMin: 120,
                       yMax: 120,
-                      borderColor: 'black',
+                      borderColor: 'red',
                       borderWidth: 2,
+                      borderDash: [5, 5],
                       label: {
                         display: true,
-                        content: '120 Margin',
+                        content: '120µm_Upper Limit',
                         position: 'start',
                       },
                     },
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Grain Size Value(µm)', // Replace with your desired title
                   },
                 },
               },
@@ -172,7 +204,7 @@ export default function Graph() {
               {
                 label: `Inverse Segregation Zone for ${selectedType}`,
                 data: dataIzone,
-                borderColor: "red",
+                borderColor: "#008080",
                 fill: false,
               },
             ],
@@ -185,11 +217,12 @@ export default function Graph() {
                       type: 'line',
                       yMin: 400,
                       yMax: 400,
-                      borderColor: 'black',
+                      borderColor: 'red',
                       borderWidth: 2,
+                      borderDash: [5, 5],
                       label: {
                         display: true,
-                        content: '400 Margin',
+                        content: '400µm_Upper Limit',
                         position: 'start',
                       },
                     },
@@ -197,14 +230,23 @@ export default function Graph() {
                       type: 'line',
                       yMin: 600,
                       yMax: 600,
-                      borderColor: 'black',
+                      borderColor: 'red',
                       borderWidth: 2,
+                      borderDash: [5, 5],
                       label: {
                         display: true,
-                        content: '600 Margin',
+                        content: '600µm_Upper Limit',
                         position: 'start',
                       },
                     },
+                  },
+                },
+              },
+              scales: {
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Inverse Segregarian Value(µm)', // Replace with your desired title
                   },
                 },
               },
@@ -217,7 +259,7 @@ export default function Graph() {
               {
                 label: `Dendrite Arm Spacing for ${selectedType}`,
                 data: dataDendrite,
-                borderColor: "yellow",
+                borderColor: "red",
                 fill: false,
               },
             ],
@@ -245,7 +287,7 @@ export default function Graph() {
       {sheetName === "Homogenize" && (
         <>
           <div className="w-2/4 h-2/4">
-            <h2>BTA Graph</h2>
+            <h1>BTA Graph</h1>
             {chartDataBta ? (
               <Line data={chartDataBta} options={chartDataBta.options} />
             ) : (
@@ -254,7 +296,7 @@ export default function Graph() {
           </div>
 
           <div className="w-2/4 h-2/4">
-            <h2>Grain Size Graph</h2>
+            <h1>Grain Size Graph</h1>
             {chartDataGrainSize ? (
               <Line
                 data={chartDataGrainSize}
@@ -266,7 +308,7 @@ export default function Graph() {
           </div>
 
           <div className="w-2/4 h-2/4">
-            <h2>Inverse Segregation Zone Graph</h2>
+            <h1>Inverse Segregation Zone Graph</h1>
             {chartDataIzone ? (
               <Line
                 data={chartDataIzone}
@@ -282,7 +324,7 @@ export default function Graph() {
       {sheetName === "Cast" && (
         <>
           <div className="w-2/4 h-2/4">
-            <h2>Dendrite Arm Spacing Graph</h2>
+            <h1>Dendrite Arm Spacing Graph</h1>
             {chartDataDendrite ? (
               <Line
                 data={chartDataDendrite}
