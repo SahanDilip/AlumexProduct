@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const credentials = JSON.parse(
-  fs.readFileSync("alumex-436803-b8034a0a2127.json")
+  fs.readFileSync("alumex-437317-bda73c2c9d22.json")
 );
 
 const serviceAccountAuth = new JWT({
@@ -26,16 +26,14 @@ const doc = new GoogleSpreadsheet(
 
 export const getData = async (req, res, next) => {
   try {
-    const { size,grade, sheet } = req.query;
+    const { size, grade, sheet } = req.query;
 
     await doc.loadInfo();
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
 
     const filteredRows = rows.filter(
-      (row) =>
-        row._rawData[2] === size &&
-        row._rawData[1] === grade
+      (row) => row._rawData[2] === size && row._rawData[1] === grade
     );
 
     if (filteredRows.length > 0) {
@@ -53,7 +51,7 @@ export const getData = async (req, res, next) => {
       res.json([]);
     }
   } catch (error) {
-    console.error("Eroorrroororororo");
+    console.error(error);
     res.status(500).json({ error: "An error occurred while fetching data." });
   }
 };
