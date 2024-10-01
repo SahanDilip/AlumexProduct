@@ -40,6 +40,7 @@ export default function Login() {
         const accessToken = data?.token;
         const role = data?.role;
 
+
         // Set user data in AuthContext
         login({ email, role, accessToken });
 
