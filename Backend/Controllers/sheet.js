@@ -53,7 +53,7 @@ export const getData = async (req, res, next) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "An error occurred while fetching data." });
-  }
+
 };
 
 export const addData = async (req, res, next) => {
