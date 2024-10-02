@@ -11,7 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import annotationPlugin from 'chartjs-plugin-annotation';
-import axios from "axios";
+import axios from "../../api/axios";
 
 // Register the required components with Chart.js
 ChartJS.register(
@@ -51,7 +51,7 @@ export default function Graph() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5001/sheet", {
+      const response = await axios.get("/sheet", {
         params: {
           size: selectedSize.trim(),
           grade: selectedType.trim(),

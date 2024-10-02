@@ -27,7 +27,7 @@ const doc = new GoogleSpreadsheet(
 export const getData = async (req, res, next) => {
   try {
     const { size, grade, sheet } = req.query;
-
+    console.log(size, grade, sheet);  
     await doc.loadInfo();
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
