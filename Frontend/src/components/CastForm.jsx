@@ -7,9 +7,9 @@ import { useState } from "react";
 import { axiosPrivate } from "../api/axios";
 import { Button } from "@mui/base/Button";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 export default function Cast_Form() {
-  
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     Date: "",
@@ -29,6 +29,7 @@ export default function Cast_Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
+    console.log(localStorage.getItem("accessToken"));
     axiosPrivate
       .post("/sheet", { data: formData, sheet: "Cast" })
       .then((res) => {
@@ -116,7 +117,6 @@ export default function Cast_Form() {
             />
             <HelperText />
           </FormControl>
-          
 
           <Button
             onClick={handleSubmit}

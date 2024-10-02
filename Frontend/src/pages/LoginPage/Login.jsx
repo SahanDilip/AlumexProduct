@@ -40,7 +40,8 @@ export default function Login() {
         const accessToken = data?.token;
         const role = data?.role;
 
-
+        // store in the localstorage
+        localStorage.setItem("accessToken", accessToken);
         // Set user data in AuthContext
         login({ email, role, accessToken });
 

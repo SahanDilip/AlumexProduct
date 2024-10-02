@@ -31,8 +31,8 @@ const pool = mysql.createPool({
 
 export const connection = pool.promise();
 
-app.use("/sheet", sheetRouter);
-app.use("/auth", authRouter);
+app.use("/api/sheet", sheetRouter);
+app.use("/api/auth", authRouter);
 
 app.listen(5001, () => {
   console.log("Server is running on port 5001");

@@ -1,6 +1,9 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import { JWT } from "google-auth-library";
 import fs from "fs";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 import xlsx from "xlsx";
 import path from "path";
@@ -9,13 +12,10 @@ import { fileURLToPath } from "url";
 // ES module equivalent of __dirname
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const credentials = JSON.parse(
-  fs.readFileSync("alumex-437317-bda73c2c9d22.json")
-);
 
 const serviceAccountAuth = new JWT({
-  email: credentials.client_email,
-  key: credentials.private_key,
+  email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+  key: process.env.Private_Key.split(String.raw`\n`).join('\n'),
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
 

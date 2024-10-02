@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://13.51.172.90:80";
+const BASE_URL = "http://localhost:5001/api";
 
 export default axios.create({
   baseURL: BASE_URL,
@@ -7,6 +7,9 @@ export default axios.create({
 
 export const axiosPrivate = axios.create({
   baseURL: BASE_URL,
-  headers: { "content-type": "application/json" },
+  headers: {
+    "content-type": "application/json",
+    authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+  },
   withCredentials: true,
 });
