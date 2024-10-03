@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 const corsOptions = {
-  origin: "http://localhost:5173", // Frontend URL
+  origin: "*", // Frontend URL
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 200,
 };
@@ -37,6 +37,3 @@ app.use("/api/auth", authRouter);
 app.listen(5001, () => {
   console.log("Server is running on port 5001");
 });
-
-
-
