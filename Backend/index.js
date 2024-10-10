@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 const corsOptions = {
-  origin: "*", // Frontend URL
+  origin: "http://localhost:5173", // Frontend URL
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
   optionsSuccessStatus: 200,
 };

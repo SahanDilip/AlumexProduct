@@ -31,10 +31,13 @@ export const getData = async (req, res, next) => {
     await doc.loadInfo();
     const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
+    // console.log("Data",rows);
 
     const filteredRows = rows.filter(
       (row) => row._rawData[2] === size && row._rawData[1] === grade
     );
+
+    
 
     if (filteredRows.length > 0) {
       const headers = spreadsheet.headerValues;
@@ -45,6 +48,7 @@ export const getData = async (req, res, next) => {
           return acc;
         }, {})
       );
+      
 
       res.json(data);
     } else {
@@ -107,21 +111,36 @@ export const addData = async (req, res, next) => {
 
 export const getMeltingData = async (req, res, next) => {
   try {
+    const { size, grade, sheet } = req.query;
+    console.log(size, grade, sheet);
+    
     await doc.loadInfo();
-    const spreadsheet = doc.sheetsByTitle["Melting Data"];
+    const spreadsheet = doc.sheetsByTitle[sheet];
     const rows = await spreadsheet.getRows();
+    // console.log("Data", rows);
+    
+    
+    const filteredRows = rows.filter(
+      (row) => row._rawData[3] === size && row._rawData[2] === grade 
+    );
+
+    console.log("Filtered Data", filteredRows);
 
     const headers = spreadsheet.headerValues;
 
-    const data = rows.map((row) =>
+    // Map over filteredRows instead of rows
+    const data = filteredRows.map((row) => 
       headers.reduce((acc, header, index) => {
         acc[header] = row._rawData[index];
         return acc;
       }, {})
     );
 
+    console.log("Data", data);
+
     res.json(data);
   } catch (error) {
-    next(error);
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while fetching melting data." });
   }
 };

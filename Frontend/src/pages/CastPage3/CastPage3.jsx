@@ -9,7 +9,7 @@ const dateFormat = 'YYYY/MM/DD';
 import dayjs from 'dayjs';
 import "./CastPage3.css";
 
-export default function CastPage3() {
+export default function CastPage2() {
   const navigate = useNavigate();
   const { user, loading } = useAuth();
   if (loading) {
@@ -29,7 +29,7 @@ export default function CastPage3() {
 
   const getBtaGraph = () => {
     navigate(
-      `/graph?type=${encodeURIComponent(
+      `/graph3?type=${encodeURIComponent(
         selectedType
       )}&size=${encodeURIComponent(selectedSize)}&startdate=${encodeURIComponent(
         startdate

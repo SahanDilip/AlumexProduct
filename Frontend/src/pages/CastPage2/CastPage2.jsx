@@ -29,7 +29,7 @@ export default function CastPage2() {
 
   const getBtaGraph = () => {
     navigate(
-      `/graph?type=${encodeURIComponent(
+      `/graph2?type=${encodeURIComponent(
         selectedType
       )}&size=${encodeURIComponent(selectedSize)}&startdate=${encodeURIComponent(
         startdate
