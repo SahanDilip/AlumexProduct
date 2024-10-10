@@ -9,6 +9,8 @@ import HomoginizedPage from "./pages/HomogenizedPage/HomoginizedPage";
 import Hormoginize_Form from "./components/HormoginizeForm";
 import Cast_Form from "./components/CastForm";
 import Graph from "./pages/GraphPage/Graph";
+import Graph2 from "./pages/GraphPage2/Graph2";
+import Graph3 from "./pages/GraphPage3/Graph3";
 import Register from "./pages/RegisterPage/Register";
 import { Navigate, Outlet } from "react-router-dom";
 import CastSelectPage from "./pages/CastSelectPage/CastSelectPage";
@@ -52,6 +54,8 @@ function App() {
           <Route path="/cast-two" element={<CastPage2 />} />
           <Route path="/cast-three" element={<CastPage3 />} />
           <Route path="/graph" element={<Graph />} />
+          <Route path="/graph2" element={<Graph2 />} />
+          <Route path="/graph3" element={<Graph3 />} />
           <Route path="/cast-selection" element={<CastSelectPage/>}/>
         </Route>
       </Routes>

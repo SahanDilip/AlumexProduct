@@ -40,17 +40,7 @@ export default function Graph() {
   const [chartDataGrainSize, setChartDataGrainSize] = useState(null);
   const [chartDataIzone, setChartDataIzone] = useState(null);
   const [chartDataDendrite, setChartDataDendrite] = useState(null);
-  const [chartDataMelting, setChartDataMelting] = useState({
-    graph1: null,
-    graph2: null,
-    graph3: null,
-    graph4: null,
-    graph5: null,
-    graph6: null,
-    graph7: null,
-    graph8: null,
-    graph9: null
-  });
+
 
   const fetchData = async () => {
     try {
@@ -61,6 +51,7 @@ export default function Graph() {
           sheet: sheetName.trim(),
         },
       });
+      console.log("response", response);
 
       if (response.status === 200) {
         const fetchedData = response.data;
@@ -88,18 +79,6 @@ export default function Graph() {
         const dataDendrite = filteredData.map(
           (item) => item.Dendrite_Arm_Spacing
         );
-
-        const meltingGraphs = {
-          graph1: filteredData.map(item => item.Column1),
-          graph2: filteredData.map(item => item.Column2),
-          graph3: filteredData.map(item => item.Column3),
-          graph4: filteredData.map(item => item.Column4),
-          graph5: filteredData.map(item => item.Column5),
-          graph6: filteredData.map(item => item.Column6),
-          graph7: filteredData.map(item => item.Column7),
-          graph8: filteredData.map(item => item.Column8),
-          graph9: filteredData.map(item => item.Column9),
-        };
 
         // Set chart data for each individual graph
         if (sheetName === "Homogenize") {
@@ -290,209 +269,7 @@ export default function Graph() {
               },
             }
           });
-        } else if (sheetName === "Melting Data") {
-          // Set up melting graphs
-          setChartDataMelting({
-            graph1: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 1 for ${selectedType}`,
-                  data: meltingGraphs.graph1,
-                  borderColor: "purple",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 1 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph2: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 2 for ${selectedType}`,
-                  data: meltingGraphs.graph2,
-                  borderColor: "orange",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 2 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph3: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 3 for ${selectedType}`,
-                  data: meltingGraphs.graph3,
-                  borderColor: "brown",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 3 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph4: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 4 for ${selectedType}`,
-                  data: meltingGraphs.graph4,
-                  borderColor: "pink",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 4 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph5: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 5 for ${selectedType}`,
-                  data: meltingGraphs.graph5,
-                  borderColor: "teal",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 5 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph6: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 6 for ${selectedType}`,
-                  data: meltingGraphs.graph6,
-                  borderColor: "magenta",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 6 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph7: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 7 for ${selectedType}`,
-                  data: meltingGraphs.graph7,
-                  borderColor: "navy",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 7 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph8: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 8 for ${selectedType}`,
-                  data: meltingGraphs.graph8,
-                  borderColor: "olive",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 8 Value',
-                    },
-                  },
-                },
-              }
-            },
-            graph9: {
-              labels,
-              datasets: [
-                {
-                  label: `Graph 9 for ${selectedType}`,
-                  data: meltingGraphs.graph9,
-                  borderColor: "grey",
-                  fill: false,
-                },
-              ],
-              options: {
-                responsive: true,
-                scales: {
-                  y: {
-                    title: {
-                      display: true,
-                      text: 'Graph 9 Value',
-                    },
-                  },
-                },
-              }
-            },
-          });
-        }
+        } 
       }
     } catch (error) {
       console.error("Error fetching data", error);
