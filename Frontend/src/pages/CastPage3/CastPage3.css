@@ -1,0 +1,19 @@
+/* Apply to all dropdown panels */
+.p-dropdown-panel {
+    background-color: white !important;  /* Ensures the dropdown panel is fully opaque */
+    opacity: 1 !important;               /* Removes any transparency */
+    border: 1px solid #ccc;              /* Optional: Define a clear border */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Define a custom shadow */
+  }
+  
+  /* Optional: Customize the dropdown items */
+  .p-dropdown-item {
+    background-color: white !important;  /* Ensures each dropdown item is opaque */
+    opacity: 1 !important;
+    color: black;                        /* Ensures the text is visible */
+  }
+  
+  .p-dropdown-item:hover {
+    background-color: #f0f0f0 !important; /* Highlight on hover with a solid color */
+  }
+  

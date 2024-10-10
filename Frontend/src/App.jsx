@@ -11,6 +11,9 @@ import Cast_Form from "./components/CastForm";
 import Graph from "./pages/GraphPage/Graph";
 import Register from "./pages/RegisterPage/Register";
 import { Navigate, Outlet } from "react-router-dom";
+import CastSelectPage from "./pages/CastSelectPage/CastSelectPage";
+import CastPage2 from "./pages/CastPage2/CastPage2";
+import CastPage3 from "./pages/CastPage3/CastPage3";
 
 function ProtectedRoute({ roleRequired }) {
   const { user, loading } = useAuth();
@@ -45,8 +48,11 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/homoginizedpage" element={<HomoginizedPage />} />
-          <Route path="/cast" element={<CastPage />} />
+          <Route path="/cast-one" element={<CastPage />} />
+          <Route path="/cast-two" element={<CastPage2 />} />
+          <Route path="/cast-three" element={<CastPage3 />} />
           <Route path="/graph" element={<Graph />} />
+          <Route path="/cast-selection" element={<CastSelectPage/>}/>
         </Route>
       </Routes>
     </div>
