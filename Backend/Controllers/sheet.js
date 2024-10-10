@@ -104,3 +104,24 @@ export const addData = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getMeltingData = async (req, res, next) => {
+  try {
+    await doc.loadInfo();
+    const spreadsheet = doc.sheetsByTitle["Melting Data"];
+    const rows = await spreadsheet.getRows();
+
+    const headers = spreadsheet.headerValues;
+
+    const data = rows.map((row) =>
+      headers.reduce((acc, header, index) => {
+        acc[header] = row._rawData[index];
+        return acc;
+      }, {})
+    );
+
+    res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};
